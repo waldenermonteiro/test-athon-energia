@@ -1,0 +1,37 @@
+$default-color: #fcfc99;
+$main-color: #f1f9ff;
+.v-main__wrap {
+  background-color: $main-color !important;
+}
+.cinzel-font {
+  font-family: "Cinzel Decorative" !important;
+  font-weight: 700;
+  color: #313131 !important;
+}
+.font-30 {
+  @extend .cinzel-font;
+  font-size: 30px;
+}
+.default-color {
+  background-color: #fcfc99 !important ;
+}
+.search-btn-color {
+  background-color: $main-color !important;
+}
+
+@media (max-width: 599px) {
+  .col-xs-12 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+}
+@media (max-width: 599px) {
+  .col-xs-6 {
+    flex: 0 0 40% !important;
+    max-width: 40% !important;
+  }
+}
+
+.v-input__slot {
+  background-color: white !important;
+}
