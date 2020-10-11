@@ -1,37 +1,61 @@
+* {
+   font-family: var(--unnamed-font-style-normal) normal medium 14px/18px Montserrat !important;
+}
 $default-color: #fcfc99;
 $main-color: #f1f9ff;
+.main-color {
+   background-color: $main-color !important;
+}
 .v-main__wrap {
-  background-color: $main-color !important;
+   @extend .main-color;
+}
+button {
+   @extend .default-color;
+   span {
+      @extend .cinzel-font;
+   }
+}
+.v-input__icon > button {
+   background-color: white !important;
 }
 .cinzel-font {
-  font-family: "Cinzel Decorative" !important;
-  font-weight: 700;
-  color: #313131 !important;
+   font-family: "Cinzel Decorative" !important;
+   font-weight: 700;
+   color: #313131 !important;
 }
 .font-30 {
-  @extend .cinzel-font;
-  font-size: 30px;
+   @extend .cinzel-font;
+   font-size: 30px;
 }
 .default-color {
-  background-color: #fcfc99 !important ;
+   background-color: #fcfc99 !important ;
 }
 .search-btn-color {
-  background-color: $main-color !important;
+   background-color: $main-color !important;
 }
 
 @media (max-width: 599px) {
-  .col-xs-12 {
-    flex: 0 0 100% !important;
-    max-width: 100% !important;
-  }
+   .col-xs-12 {
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+   }
 }
 @media (max-width: 599px) {
-  .col-xs-6 {
-    flex: 0 0 40% !important;
-    max-width: 40% !important;
-  }
+   .col-xs-6 {
+      flex: 0 0 40% !important;
+      max-width: 40% !important;
+   }
 }
 
 .v-input__slot {
-  background-color: white !important;
+   background-color: white !important;
+}
+.v-text-field.v-text-field--enclosed .v-text-field__details {
+   margin-bottom: 0px !important;
+}
+.btn-default-custom{
+   background-color: #fafafa  !important;
+   span{
+    color: #2699fb !important;
+   }
 }
