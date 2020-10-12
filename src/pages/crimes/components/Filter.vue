@@ -46,13 +46,13 @@
     <v-row class="justify-center">
       <v-col class="col-xs-12 col-7">
         <v-row class="justify-center">
-          <v-btn @click="clearForm()" class="default-color cinzel-font col-xs-6 col-3 ma-2">
+          <v-btn @click="clearForm()" class="col-xs-6 col-3 ma-2">
             <v-icon left dark>
               mdi-delete
             </v-icon>
             Clear
           </v-btn>
-          <v-btn class="search-btn-color cinzel-font col-xs-6 col-3 ma-2">
+          <v-btn class="search-btn-color col-xs-6 col-3 ma-2">
             <v-icon left dark>
               mdi-magnify
             </v-icon>
