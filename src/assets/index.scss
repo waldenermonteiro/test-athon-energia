@@ -3,21 +3,22 @@
 }
 $default-color: #fcfc99;
 $main-color: #f1f9ff;
+$card-color: #3C5C77;
+
 .main-color {
    background-color: $main-color !important;
 }
-.v-main__wrap {
-   @extend .main-color;
+.card-color {
+   color: $card-color !important;
 }
+
 button {
-   @extend .default-color;
+   // @extend .default-color;
    span {
       @extend .cinzel-font;
    }
 }
-.v-input__icon > button {
-   background-color: white !important;
-}
+
 .cinzel-font {
    font-family: "Cinzel Decorative" !important;
    font-weight: 700;
@@ -26,6 +27,12 @@ button {
 .font-30 {
    @extend .cinzel-font;
    font-size: 30px;
+   text-transform: uppercase;
+}
+.font-24{
+   @extend .cinzel-font;
+   font-size: 24px;
+   text-transform: uppercase;
 }
 .default-color {
    background-color: #fcfc99 !important ;
@@ -47,6 +54,12 @@ button {
    }
 }
 
+.v-main__wrap {
+   @extend .main-color;
+}
+.v-input__icon > button {
+   background-color: white !important;
+}
 .v-input__slot {
    background-color: white !important;
 }
@@ -57,5 +70,23 @@ button {
    background-color: #fafafa  !important;
    span{
     color: #2699fb !important;
+   }
+}
+.item-details-title{
+   font-weight: 600 !important;
+   font-size: 18px !important;
+}
+.test:hover{
+   color: red !important
+}
+.v-card {
+   .v-card__title{
+      @extend .card-color;
+   }
+   .v-card__subtitle{
+      @extend .card-color;
+   }
+   p.mb-0, p.mb-1{
+      @extend .card-color;
    }
 }
