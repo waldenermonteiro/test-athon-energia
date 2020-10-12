@@ -36,7 +36,7 @@
                 <v-col cols="12" sm="6" md="6">
                   <v-text-field required :rules="criminalRules" outlined dense label="Criminal*" clearable></v-text-field>
                 </v-col>
-                <v-col cols="12" sm="6" md="6">
+                <v-col cols="12" sm="6" md="6" >
                   <v-select
                     required
                     :rules="weaponRules"
@@ -95,7 +95,7 @@
           </v-container>
         </v-card-text>
         <v-card-actions class="d-flex justify-end">
-          <v-btn :disabled="!valid" @click="send()">
+          <v-btn :disabled="!valid" @click="send()" class="default-color">
             <v-icon left dark>
               mdi-plus
             </v-icon>
