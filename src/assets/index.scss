@@ -1,9 +1,16 @@
-* {
-   font-family: var(--unnamed-font-style-normal) normal medium 14px/18px Montserrat !important;
-}
 $default-color: #fcfc99;
 $main-color: #f1f9ff;
-$card-color: #3C5C77;
+$card-color: #3c5c77;
+$default-font: Montserrat;
+$cinzel-font: Cinzel Decorative;
+* {
+   font-family: var(--unnamed-font-style-normal) normal medium 14px/18px $default-font !important;
+}
+button {
+   span {
+      @extend .cinzel-font;
+   }
+}
 
 .main-color {
    background-color: $main-color !important;
@@ -11,49 +18,36 @@ $card-color: #3C5C77;
 .card-color {
    color: $card-color !important;
 }
-
-button {
-   // @extend .default-color;
-   span {
-      @extend .cinzel-font;
-   }
-}
-
 .cinzel-font {
-   font-family: "Cinzel Decorative" !important;
    font-weight: 700;
+   letter-spacing: 0px;
    color: #313131 !important;
 }
 .font-30 {
    @extend .cinzel-font;
-   font-size: 30px;
+   font: normal normal bold 38px/33px $cinzel-font;
    text-transform: uppercase;
 }
-.font-24{
+.font-24 {
    @extend .cinzel-font;
-   font-size: 24px;
    text-transform: uppercase;
+   font: normal normal bold 24px/17px $cinzel-font;
 }
 .default-color {
-   background-color: #fcfc99 !important ;
+   background-color: $default-color !important ;
 }
 .search-btn-color {
    background-color: $main-color !important;
 }
-
-@media (max-width: 599px) {
-   .col-xs-12 {
-      flex: 0 0 100% !important;
-      max-width: 100% !important;
+.btn-default-custom {
+   background-color: #fafafa !important;
+   span {
+      color: #2699fb !important;
    }
 }
-@media (max-width: 599px) {
-   .col-xs-6 {
-      flex: 0 0 40% !important;
-      max-width: 40% !important;
-   }
+.test:hover {
+   color: red !important;
 }
-
 .v-main__wrap {
    @extend .main-color;
 }
@@ -66,27 +60,31 @@ button {
 .v-text-field.v-text-field--enclosed .v-text-field__details {
    margin-bottom: 0px !important;
 }
-.btn-default-custom{
-   background-color: #fafafa  !important;
-   span{
-    color: #2699fb !important;
-   }
-}
-.item-details-title{
-   font-weight: 600 !important;
-   font-size: 18px !important;
-}
-.test:hover{
-   color: red !important
-}
 .v-card {
-   .v-card__title{
+   .v-card__title {
       @extend .card-color;
+      letter-spacing: 0px !important;
+      opacity: 1 !important;
    }
-   .v-card__subtitle{
+   .v-card__subtitle {
       @extend .card-color;
+      letter-spacing: 0px !important;
+      opacity: 1 !important;
    }
-   p.mb-0, p.mb-1{
+   p.mb-0,
+   p.mb-1 {
       @extend .card-color;
    }
 }
+.item-details-title {
+   font: normal normal bold 18px/22px $default-font; 
+ }
+ .item-details-title-no-bold {
+   font: normal normal medium 18px/22px $default-font;
+ }
+ .item-details-subtitle {
+   font: normal normal medium 14px/18px $default-font;
+ }
+ .item-details-text {
+   font: normal normal  18px/22px $default-font;
+ }
