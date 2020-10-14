@@ -2,14 +2,14 @@
   <v-container>
     <v-row class="">
       <v-col class="d-flex justify-start">
-        <div class="text-uppercase font-30">Crime List</div>
+        <div class="font-30">Crime List</div>
       </v-col>
       <v-col class="d-flex justify-end">
         <v-btn @click="openModalCreate()" class="default-color">
           <v-icon left dark>
             mdi-plus
           </v-icon>
-          add a new crime
+          add new crime
         </v-btn>
       </v-col>
     </v-row>
