@@ -5,7 +5,7 @@ class CrimeService extends base {
     super('/crimes')
   }
 
-  listCrimeTypes = async ($params = '') => {
+  listTypesOfCrime = async ($params = '') => {
     try {
       const { data } = await this.service.get('crime_types', { params: $params })
       return data

@@ -9,9 +9,9 @@ export const list = async ({ commit }, params) => {
     await error
   }
 }
-export const listCrimeTypes = async ({ commit }, params) => {
+export const listTypesOfCrime = async ({ commit }, params) => {
   try {
-    const { data } = await CrimeService.listCrimeTypes(params)
+    const { data } = await CrimeService.listTypesOfCrime(params)
     commit('SET_DATA_CRIME_TYPES', data)
   } catch (error) {
     await error
