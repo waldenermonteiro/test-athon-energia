@@ -3,7 +3,6 @@ import WeaponService from '../services/WeaponService'
 
 export const list = async ({ commit }, params) => {
   try {
-    console.log('test')
     const { data } = await WeaponService.list(params)
     commit('SET_DATA', data)
   } catch (error) {

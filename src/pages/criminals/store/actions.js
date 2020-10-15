@@ -4,7 +4,6 @@ import CriminalService from '../services/CriminalService'
 
 export const list = async ({ commit }, params) => {
   try {
-    console.log('test')
     const { data } = await CriminalService.list(params)
     commit('SET_DATA', data)
   } catch (error) {
