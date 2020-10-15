@@ -1,3 +1,5 @@
 export default {
-  crimeTypes: []
+  crimes: [],
+  typesOfCrime: [],
+  orderBy: ['Date', 'Weapon', 'Criminal', 'Victim', 'Country']
 }
