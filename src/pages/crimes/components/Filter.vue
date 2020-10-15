@@ -2,44 +2,70 @@
   <div>
     <v-row>
       <v-col class="col-xs-12">
-        <v-text-field v-model="form.text" outlined dense label="Text Filter" clearable prepend-icon="mdi-card-text" ></v-text-field>
+        <v-text-field v-model="form.text" @click:clear="clearPropOfForm(form, 'text')" outlined dense label="Text Filter" clearable prepend-icon="mdi-card-text"></v-text-field>
       </v-col>
       <v-col class="col-xs-12">
-        <v-text-field v-model="form.typeOfCrime" outlined dense label="Type of Crime" clearable prepend-icon="mdi-folder-open"></v-text-field>
+        <v-select
+          v-model="form.crime_type"
+          @click:clear="clearPropOfForm(form, 'crime_type')"
+          outlined
+          dense
+          label="Types of Crime"
+          clearable
+          prepend-icon="mdi-folder-open"
+          :items="typesOfCrime"
+          item-text="tx_type"
+          item-value="id_crime_type"
+        ></v-select>
       </v-col>
       <v-col class="col-xs-12">
-        <v-text-field v-model="form.orderBy" outlined dense label="Order By" clearable prepend-icon="mdi-form-dropdown"></v-text-field>
+        <v-select
+          v-model="form.order_by"
+          @click:clear="clearPropOfForm(form, 'order_by')"
+          outlined
+          dense
+          label="Order By"
+          clearable
+          prepend-icon="mdi-form-dropdown"
+          :items="orderBy"
+        ></v-select>
       </v-col>
       <v-col class="col-xs-12">
-        <v-menu ref="menu" v-model="menu" :close-on-content-click="false" :return-value.sync="form.dateFrom" transition="scale-transition" offset-y min-width="290px">
+        <v-menu ref="menu1" v-model="menu1" :close-on-content-click="false" transition="scale-transition" offset-y max-width="290px">
           <template v-slot:activator="{ on, attrs }">
-            <v-text-field v-model="form.dateFrom" outlined dense label="Date - From" clearable prepend-icon="mdi-calendar" v-bind="attrs" v-on="on"></v-text-field>
+            <v-text-field
+              v-model="initialDatetimeFormatted"
+              @click:clear="clearPropOfForm(form, 'initial_datetime')"
+              outlined
+              dense
+              label="Date - From"
+              clearable
+              prepend-icon="mdi-calendar"
+              v-bind="attrs"
+              @blur="form.initial_datetime = $formatFrontDateToApi(initialDatetimeFormatted)"
+              v-on="on"
+            ></v-text-field>
           </template>
-          <v-date-picker v-model="form.dateFrom" no-title scrollable>
-            <v-spacer></v-spacer>
-            <v-btn text color="primary" @click="menu = false">
-              Cancel
-            </v-btn>
-            <v-btn text color="primary" @click="$refs.menu.save(form.dateFrom)">
-              OK
-            </v-btn>
-          </v-date-picker>
+          <v-date-picker v-model="form.initial_datetime" no-title @input="menu1 = false"></v-date-picker>
         </v-menu>
       </v-col>
       <v-col class="col-xs-12">
-        <v-menu ref="menu2" v-model="menu2" :close-on-content-click="false" :return-value.sync="form.dateTo" transition="scale-transition" offset-y min-width="290px">
+        <v-menu ref="menu2" v-model="menu2" :close-on-content-click="false" transition="scale-transition" offset-y max-width="290px">
           <template v-slot:activator="{ on, attrs }">
-            <v-text-field v-model="form.dateTo" outlined dense label="Date - To" clearable prepend-icon="mdi-calendar" v-bind="attrs" v-on="on"></v-text-field>
+            <v-text-field
+              v-model="finalDatetimeFormatted"
+              @click:clear="clearPropOfForm(form, 'final_datetime')"
+              outlined
+              dense
+              label="Date - To"
+              clearable
+              prepend-icon="mdi-calendar"
+              v-bind="attrs"
+              @blur="form.final_datetime = $formatFrontDateToApi(finalDatetimeFormatted)"
+              v-on="on"
+            ></v-text-field>
           </template>
-          <v-date-picker v-model="form.dateTo" no-title scrollable>
-            <v-spacer></v-spacer>
-            <v-btn text color="primary" @click="menu2 = false">
-              Cancel
-            </v-btn>
-            <v-btn text color="primary" @click="$refs.menu2.save(form.dateTo)">
-              OK
-            </v-btn>
-          </v-date-picker>
+          <v-date-picker v-model="form.final_datetime" no-title @input="menu2 = false"></v-date-picker>
         </v-menu>
       </v-col>
     </v-row>
@@ -52,7 +78,7 @@
             </v-icon>
             Clear
           </v-btn>
-          <v-btn class="search-btn-color col-xs-6 col-3 ma-2">
+          <v-btn @click="filter(form)" class="search-btn-color col-xs-6 col-3 ma-2">
             <v-icon left dark>
               mdi-magnify
             </v-icon>
@@ -64,24 +90,49 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
+import masks from '../../../mixins/masks'
 export default {
-  data () {
-    return {
-      form: { ...this.formOrigin },
-      formOrigin: {
-        text: '',
-        typeOfCrime: '',
-        orderBy: '',
-        dateFrom: new Date().toISOString().substr(0, 10),
-        dateTo: new Date().toISOString().substr(0, 10)
-      },
-      menu: false,
-      menu2: false
+  mixins: [masks],
+  data: vm => ({
+    form: {},
+    formOrigin: {
+      text: '',
+      crime_type: '',
+      order_by: '',
+      initial_datetime: '',
+      final_datetime: ''
+    },
+    initialDatetimeFormatted: vm.$formatApiDateToFront(new Date().toISOString().substr(0, 10)),
+    finalDatetimeFormatted: vm.$formatApiDateToFront(new Date().toISOString().substr(0, 10)),
+    menu1: false,
+    menu2: false
+  }),
+  computed: {
+    ...mapState('Crime', ['typesOfCrime', 'orderBy'])
+  },
+  mounted () {
+    this.form = { ...this.formOrigin }
+    this.$list({ urlDispatch: 'Crime/listTypesOfCrime' })
+  },
+  watch: {
+    'form.initial_datetime' (val) {
+      this.initialDatetimeFormatted = val !== '' ? this.$formatApiDateToFront(val) : ''
+    },
+    'form.final_datetime' (val) {
+      this.finalDatetimeFormatted = val !== '' ? this.$formatApiDateToFront(val) : ''
     }
   },
+
   methods: {
     clearForm () {
       this.form = { ...this.formOrigin }
+    },
+    filter (form) {
+      this.$list({ urlDispatch: 'Crime/list', params: { ...form } })
+    },
+    clearPropOfForm (form, prop) {
+      this.$list({ urlDispatch: 'Crime/list', params: { ...form, [prop]: '' } })
     }
   }
 }
