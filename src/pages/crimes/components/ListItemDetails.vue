@@ -12,7 +12,7 @@
           </v-toolbar-items>
         </v-toolbar>
         <ListItem class="elevation-0">
-          <h2 class="font-24 mt-5 ">Criminal</h2>
+          <h2 class="font-24 mt-5">Criminal</h2>
           <ListItemWithImage />
           <h2 class="font-24">Victim</h2>
           <ListItemWithImage :onlyOne="true" />
@@ -42,12 +42,11 @@ export default {
     dialog: false
   }),
   computed: {
-    ...mapState('Crime', ['crimeTypes']),
     ...mapState('Weapon', ['weapons'])
   },
   mounted () {
     this.$list({ urlDispatch: 'Weapon/list' })
-    this.$list({ urlDispatch: 'Crime/listCrimeTypes' })
+    this.$list({ urlDispatch: 'Crime/listTypesOfCrime' })
   },
 
   methods: {
