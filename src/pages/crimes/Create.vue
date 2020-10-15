@@ -23,7 +23,7 @@
                     dense
                     label="Types of Crime*"
                     clearable
-                    :items="crimeTypes"
+                    :items="typesOfCrime"
                     item-text="tx_type"
                     item-value="id_crime_type"
                   ></v-select>
@@ -118,12 +118,12 @@ export default {
     valid: true
   }),
   computed: {
-    ...mapState('Crime', ['crimeTypes']),
+    ...mapState('Crime', ['typesOfCrime']),
     ...mapState('Weapon', ['weapons'])
   },
   mounted () {
     this.$list({ urlDispatch: 'Weapon/list' })
-    this.$list({ urlDispatch: 'Crime/listCrimeTypes' })
+    this.$list({ urlDispatch: 'Crime/listTypesOfCrime' })
   },
 
   methods: {
