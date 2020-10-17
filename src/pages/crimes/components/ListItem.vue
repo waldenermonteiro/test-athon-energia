@@ -1,6 +1,6 @@
 <template>
   <v-card class="main-color">
-    <v-card-title class="item-details-title pb-4"> {{typeOfCrime}} </v-card-title>
+    <v-card-title class="item-details-title pb-4"> {{verifyTypeOfCrimes(typeOfCrime)}} </v-card-title>
     <v-card-subtitle class="item-details-subtitle pb-2">Crime Type</v-card-subtitle>
     <v-card-text>
       <p class="item-details-text mb-0">{{$formatApiDateTimeToFront(dateOfTheCrime)}}</p>
@@ -22,6 +22,11 @@ export default {
     },
     country: {
       required: true
+    }
+  },
+  methods: {
+    verifyTypeOfCrimes (typesOfCrimes) {
+      return typesOfCrimes.length !== 0 ? typesOfCrimes[0].crime_type : 'Sem Informação'
     }
   }
 }
