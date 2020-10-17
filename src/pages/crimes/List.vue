@@ -21,7 +21,7 @@
             <v-icon class="float-right" color="#2699fb" @click="openModalListItemDetails(crime.id_crime)">
               mdi-magnify-plus-outline
             </v-icon>
-            <v-icon class="test float-right" color="#2699fb" @click="clickDeleteIcon()">
+            <v-icon class="btn-delete float-right" color="#2699fb" @click="deleteCrime(crime.id_crime)">
               mdi-delete
             </v-icon>
           </div>
@@ -29,6 +29,7 @@
         <ListItemDetails
           :ref="`modalListItemDetails${crime.id_crime}`"
           :crime="crime"
+          @delete-crime="deleteCrime(crime.id_crime)"
         ></ListItemDetails>
       </v-col>
     </v-row>
@@ -37,11 +38,13 @@
 </template>
 <script>
 import { mapState } from 'vuex'
+import notify from '../../mixins/notify-message.mixin'
 import CCreate from './Create'
 import CFilter from './components/Filter'
 import ListItem from './components/ListItem'
 import ListItemDetails from './components/ListItemDetails'
 export default {
+  mixins: [notify],
   components: {
     CCreate,
     CFilter,
@@ -65,6 +68,26 @@ export default {
     },
     openModalListItemDetails (id) {
       this.$refs[`modalListItemDetails${id}`][0].openModal()
+    },
+    deleteCrime (id) {
+      this.$setDialogQuestion({
+        title: 'Are you sure you want to remove this crime?',
+        message: 'This action is irreversible',
+        callback: () => {
+          this.$remove({
+            urlDispatch: 'Crime/remove',
+            params: { crime_id: id },
+            callback: () => {
+              this.$list({
+                urlDispatch: 'Crime/list',
+                callback: () => {
+                  this.$setNotifySuccess('Crime deleted with success')
+                }
+              })
+            }
+          })
+        }
+      })
     }
   }
 }
