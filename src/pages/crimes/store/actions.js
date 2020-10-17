@@ -33,7 +33,7 @@ export const update = async ({ commit }, obj) => {
 }
 export const remove = async ({ commit }, obj) => {
   try {
-    await CrimeService.remove(obj.id)
+    await CrimeService.removeNoId(obj)
   } catch (error) {
     throw error
   }
