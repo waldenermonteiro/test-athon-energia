@@ -40,7 +40,7 @@
           </v-row>
         </ListItem>
         <v-card-actions class="d-flex justify-end ">
-          <v-btn color="error" class="btn-error-color">
+          <v-btn color="error" class="btn-error-color" @click="deleteCrime()">
             <v-icon left dark>
               mdi-delete
             </v-icon>
@@ -73,6 +73,9 @@ export default {
     },
     closeModal () {
       this.dialog = false
+    },
+    deleteCrime () {
+      this.$emit('delete-crime')
     }
   }
 }
