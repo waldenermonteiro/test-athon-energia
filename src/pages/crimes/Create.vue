@@ -123,7 +123,6 @@ export default {
   },
   mounted () {
     this.$list({ urlDispatch: 'Weapon/list' })
-    this.$list({ urlDispatch: 'Crime/listTypesOfCrime' })
   },
 
   methods: {
