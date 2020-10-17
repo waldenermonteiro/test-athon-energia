@@ -16,9 +16,9 @@
     <CFilter></CFilter>
     <v-row>
       <v-col cols="12" sm="4" md="4" lg="3" v-for="crime in crimes" :key="crime.id_crime">
-        <ListItem :typeOfCrime="verifyTypeOfCrimes(crime.criminal_crime_types)" :dateOfTheCrime="crime.crime_date" :country="crime.country">
+        <ListItem :typeOfCrime="crime.criminal_crime_types" :dateOfTheCrime="crime.crime_date" :country="crime.country">
           <div class="mb-5">
-            <v-icon class="float-right" color="#2699fb" @click="openModalListItemDetails()">
+            <v-icon class="float-right" color="#2699fb" @click="openModalListItemDetails(crime.id_crime)">
               mdi-magnify-plus-outline
             </v-icon>
             <v-icon class="test float-right" color="#2699fb" @click="clickDeleteIcon()">
@@ -26,10 +26,13 @@
             </v-icon>
           </div>
         </ListItem>
+        <ListItemDetails
+          :ref="`modalListItemDetails${crime.id_crime}`"
+          :crime="crime"
+        ></ListItemDetails>
       </v-col>
     </v-row>
     <CCreate ref="modalCreate"> </CCreate>
-    <ListItemDetails ref="modalListItemDetails"></ListItemDetails>
   </v-container>
 </template>
 <script>
@@ -60,11 +63,8 @@ export default {
     openModalCreate () {
       this.$refs.modalCreate.openModal()
     },
-    openModalListItemDetails () {
-      this.$refs.modalListItemDetails.openModal()
-    },
-    verifyTypeOfCrimes (typesOfCrimes) {
-      return typesOfCrimes.length !== 0 ? typesOfCrimes[0].crime_type : 'Sem Informação'
+    openModalListItemDetails (id) {
+      this.$refs[`modalListItemDetails${id}`][0].openModal()
     }
   }
 }
