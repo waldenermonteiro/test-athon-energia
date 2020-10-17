@@ -11,14 +11,36 @@
             </v-btn>
           </v-toolbar-items>
         </v-toolbar>
-        <ListItem class="elevation-0">
+        <ListItem class="elevation-0" :typeOfCrime="crime.criminal_crime_types" :dateOfTheCrime="crime.crime_date" :country="crime.country">
           <h2 class="font-24 mt-5">Criminal</h2>
-          <ListItemWithImage />
+          <v-row v-if="crime.criminal_crime_types.length === 0">
+            <v-col cols="12" sm="6" md="6">
+              <ListItemWithImage :onlyOne="true" secondTitle="No criminal" subtitle="Weapon" :emptyItems="`NO <br />CRIMINAL`" />
+            </v-col>
+          </v-row>
+          <v-row v-else>
+            <v-col cols="12" sm="6" md="6" v-for="(crimeItem, index) in crime.criminal_crime_types" :key="index">
+              <ListItemWithImage
+                :firstTitle="crime.criminal_crime_types[0].criminal"
+                :secondTitle="crime.weapons_crime[0].weapon"
+                :subtitle="`${crime.weapons_crime[0].weapon_type} Weapon`"
+              />
+            </v-col>
+          </v-row>
           <h2 class="font-24">Victim</h2>
-          <ListItemWithImage :onlyOne="true" />
+          <v-row v-if="crime.victims_crime.length === 0">
+            <v-col cols="12" sm="6" md="6">
+              <ListItemWithImage :onlyOne="true" secondTitle="No victim" subtitle="Victim" :emptyItems="`NO <br />VICTIM`" />
+            </v-col>
+          </v-row>
+          <v-row v-else>
+            <v-col cols="12" sm="6" md="6" v-for="(victim, index) in crime.victims_crime" :key="index">
+              <ListItemWithImage :onlyOne="true" :secondTitle="victim.victim" subtitle="Victim" />
+            </v-col>
+          </v-row>
         </ListItem>
-        <v-card-actions class="d-flex justify-end">
-          <v-btn color="error">
+        <v-card-actions class="d-flex justify-end ">
+          <v-btn color="error" class="btn-error-color">
             <v-icon left dark>
               mdi-delete
             </v-icon>
@@ -32,8 +54,12 @@
 <script>
 import ListItem from './ListItem'
 import ListItemWithImage from './ListItemWithImage'
-import { mapState } from 'vuex'
 export default {
+  props: {
+    crime: {
+      required: true
+    }
+  },
   components: {
     ListItem,
     ListItemWithImage
@@ -41,14 +67,6 @@ export default {
   data: () => ({
     dialog: false
   }),
-  computed: {
-    ...mapState('Weapon', ['weapons'])
-  },
-  mounted () {
-    this.$list({ urlDispatch: 'Weapon/list' })
-    this.$list({ urlDispatch: 'Crime/listTypesOfCrime' })
-  },
-
   methods: {
     openModal () {
       this.dialog = true
