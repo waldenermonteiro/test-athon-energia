@@ -60,4 +60,13 @@ export default class Base {
       throw statusResponse(error, 'remove')
     }
   };
+
+  removeNoId = async $params => {
+    try {
+      const response = await this.service.delete(`${this.api}`, { params: $params })
+      return response
+    } catch (error) {
+      throw statusResponse(error, 'remove')
+    }
+  };
 }
