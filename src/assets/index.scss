@@ -36,7 +36,7 @@ button {
 .default-color {
    background-color: $default-color !important ;
 }
-.search-btn-color {
+.btn-search-color {
    background-color: $main-color !important;
 }
 .btn-default-custom {
@@ -45,7 +45,13 @@ button {
       color: #2699fb !important;
    }
 }
-.test:hover {
+.btn-error-color{
+   span {
+      color:#FFFFFF !important;
+   }
+
+}
+.btn-delete:hover {
    color: red !important;
 }
 .v-main__wrap {
