@@ -22,5 +22,14 @@ class CrimeService extends base {
       throw this.statusResponse(error, 'list')
     }
   };
+
+  listCountries = async () => {
+    try {
+      const data = await this.service.get('https://cors-anywhere.herokuapp.com/https://restcountries.eu/rest/v2/all')
+      return data
+    } catch (error) {
+      throw this.statusResponse(error, 'list')
+    }
+  }
 }
 export default new CrimeService()
