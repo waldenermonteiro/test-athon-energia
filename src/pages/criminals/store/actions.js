@@ -1,5 +1,4 @@
 
-/* eslint-disable no-useless-catch */
 import CriminalService from '../services/CriminalService'
 
 export const list = async ({ commit }, params) => {
@@ -11,23 +10,11 @@ export const list = async ({ commit }, params) => {
   }
 }
 export const create = async ({ commit }, obj) => {
-  try {
-    await CriminalService.create(obj)
-  } catch (error) {
-    throw error
-  }
+  commit('SET_CRIMINAL_IN_LIST', obj)
 }
-export const update = async ({ commit }, obj) => {
-  try {
-    await CriminalService.updateNoId(obj)
-  } catch (error) {
-    throw error
-  }
+export const update = async ({ commit }, { form, index }) => {
+  commit('UPDATE', { form, index })
 }
-export const remove = async ({ commit }, obj) => {
-  try {
-    await CriminalService.remove(obj.id)
-  } catch (error) {
-    throw error
-  }
+export const remove = async ({ commit }, index) => {
+  commit('REMOVE', index)
 }
