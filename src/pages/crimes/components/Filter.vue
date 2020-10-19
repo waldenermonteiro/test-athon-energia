@@ -1,10 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-col class="col-xs-12">
-        <v-text-field v-model="form.text" @click:clear="clearPropOfForm(form, 'text')" outlined dense label="Text Filter" clearable prepend-icon="mdi-card-text"></v-text-field>
-      </v-col>
-      <v-col class="col-xs-12">
+      <v-col cols="12" sm="3">
         <v-select
           v-model="form.crime_type"
           @click:clear="clearPropOfForm(form, 'crime_type')"
@@ -18,7 +15,7 @@
           item-value="id_crime_type"
         ></v-select>
       </v-col>
-      <v-col class="col-xs-12">
+      <v-col cols="12" sm="3">
         <v-select
           v-model="form.order_by"
           @click:clear="clearPropOfForm(form, 'order_by')"
@@ -30,7 +27,7 @@
           :items="orderBy"
         ></v-select>
       </v-col>
-      <v-col class="col-xs-12">
+      <v-col cols="12" sm="3">
         <v-menu ref="menu1" v-model="menu1" :close-on-content-click="false" transition="scale-transition" offset-y max-width="290px">
           <template v-slot:activator="{ on, attrs }">
             <v-text-field
@@ -49,7 +46,7 @@
           <v-date-picker v-model="form.initial_datetime" no-title @input="menu1 = false"></v-date-picker>
         </v-menu>
       </v-col>
-      <v-col class="col-xs-12">
+      <v-col cols="12" sm="3">
         <v-menu ref="menu2" v-model="menu2" :close-on-content-click="false" transition="scale-transition" offset-y max-width="290px">
           <template v-slot:activator="{ on, attrs }">
             <v-text-field
@@ -70,15 +67,15 @@
       </v-col>
     </v-row>
     <v-row class="justify-center">
-      <v-col class="col-xs-12 col-7">
+      <v-col cols="12" sm="7">
         <v-row class="justify-center">
-          <v-btn @click="clearForm()" class="col-xs-6 col-3 ma-2">
+          <v-btn @click="clearForm()" class="col-3 ma-2">
             <v-icon left dark>
-              mdi-delete
+              mdi-close
             </v-icon>
             Clear
           </v-btn>
-          <v-btn @click="filter(form)" class="btn-search-color col-xs-6 col-3 ma-2">
+          <v-btn @click="filter(form)" class="btn-search-color col-3 ma-2">
             <v-icon left dark>
               mdi-magnify
             </v-icon>
