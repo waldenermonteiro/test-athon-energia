@@ -12,7 +12,6 @@ export const SET_DATA = (state, payload) => {
 export const SET_COUNTRIES = (state, payload) => {
   state.countries = payload
 }
-
 export const SET_DATA_CRIME_TYPES = (state, payload) => {
   payload.crime_types.map((type) => {
     type.tx_type = firstUppercase(type.tx_type)
