@@ -1,10 +1,15 @@
 <template>
   <v-card class="main-color">
-    <v-card-title class="item-details-title pb-4"> {{verifyTypeOfCrimes(typeOfCrime)}} </v-card-title>
+    <v-card-title class="item-details-title pb-4">
+      <div class="flex justify-start">{{ verifyTypeOfCrimes(typeOfCrime) }} </div>
+      <div class="flex justify-end">
+        <slot name="delete"> </slot>
+      </div>
+    </v-card-title>
     <v-card-subtitle class="item-details-subtitle pb-2">Crime Type</v-card-subtitle>
     <v-card-text>
-      <p class="item-details-text mb-0">{{$formatApiDateTimeToFront(dateOfTheCrime)}}</p>
-      <p class="item-details-subtitle mb-1">{{country}}</p>
+      <p class="item-details-text mb-0">{{ $formatApiDateTimeToFront(dateOfTheCrime) }}</p>
+      <p class="item-details-subtitle mb-1">{{ country }}</p>
       <slot> </slot>
     </v-card-text>
   </v-card>
