@@ -28,6 +28,11 @@ button {
    font: normal normal bold 38px/33px $cinzel-font;
    text-transform: uppercase;
 }
+@media (min-width: 320px) and (max-width: 600px) {
+   .font-30 {
+      font: normal normal bold 18px $cinzel-font !important;
+   }
+ }
 .font-24 {
    @extend .cinzel-font;
    text-transform: uppercase;
