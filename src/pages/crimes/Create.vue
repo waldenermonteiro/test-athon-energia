@@ -94,7 +94,7 @@
                   ></v-select>
                 </v-col>
                 <v-col cols="12">
-                  <v-btn @click="addCriminal(form)" class="v-picker--full-width btn-default-custom">
+                  <v-btn :disabled="!form.criminal" @click="addCriminal(form)" class="v-picker--full-width btn-default-custom">
                     <v-icon left dark>
                       mdi-plus
                     </v-icon>
@@ -177,6 +177,7 @@ export default {
       this.$refs.modalListCriminals.openModal()
     },
     addCriminal (form) {
+      console.log(form)
       this.create({ ...form })
     },
     prepareParams (form, criminalsForm) {
