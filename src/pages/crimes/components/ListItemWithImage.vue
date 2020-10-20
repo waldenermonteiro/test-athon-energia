@@ -1,17 +1,24 @@
 <template>
   <v-row no-gutters>
-    <v-col cols="12" sm="3" lg="4" class="d-flex align-center">
-      <v-avatar v-if="emptyItems" class="width-image white d-flex align-center "
-      ><p class="black--text font-weight-black pt-3 " v-html="emptyItems">
-      </p>
-      </v-avatar>
+    <v-col cols="6" sm="4" lg="4" class="d-flex align-center">
+      <v-avatar v-if="emptyItems" class="width-image white d-flex align-center"><p class="black--text font-weight-black pt-3 " v-html="emptyItems"></p> </v-avatar>
       <v-avatar v-else class="width-image"> <img alt="user" :src="`https://randomuser.me/api/portraits/med/${randomSex}/${randomId}.jpg`" /> </v-avatar
       ></v-col>
-    <v-col cols="12" sm="9" lg="8" class="d-flex align-center height-col">
+    <v-col cols="6" sm="8" lg="8" class="d-flex align-center height-col">
       <v-card class="main-color elevation-0">
-        <v-card-title v-if="!onlyOne" class="item-details-title-no-bold mb-0 pb-3"> {{ firstTitle }} </v-card-title>
-        <v-card-subtitle v-if="!onlyOne" class="item-details-subtitle pb-1">Criminal</v-card-subtitle>
-        <v-card-title class="item-details-title-no-bold pt-0 pb-3"> {{ secondTitle }} </v-card-title>
+        <v-card-title v-if="!onlyOne" class="item-details-title-no-bold mb-0 pb-3">
+          {{ firstTitle }}
+          <v-icon v-if="!emptyItems" small class="ml-1" color="grey" @click="copyText(firstTitle)">
+            mdi-content-copy
+          </v-icon>
+        </v-card-title>
+        <v-card-subtitle v-if="!onlyOne" class="item-details-subtitle pb-0">Criminal</v-card-subtitle>
+        <v-card-title class="item-details-title-no-bold pt-2 pb-3">
+          {{ secondTitle }}
+          <v-icon v-if="!emptyItems" small class="ml-1" color="grey" @click="copyText(secondTitle)">
+            mdi-content-copy
+          </v-icon>
+        </v-card-title>
         <v-card-subtitle class="item-details-subtitle">{{ subtitle }}</v-card-subtitle>
       </v-card>
     </v-col>
@@ -46,18 +53,28 @@ export default {
   mounted () {
     this.randomId = Math.floor(Math.random() * 10)
     this.randomSex = this.randomId % 2 === 0 ? 'women' : 'men'
+  },
+  methods: {
+    copyText (text) {
+      navigator.clipboard.writeText(text).then(
+        function () {
+          console.log('Async: Copying to clipboard was successful!')
+        },
+        function (err) {
+          console.error('Async: Could not copy text: ', err)
+        }
+      )
+    }
   }
 }
 </script>
 <style scoped>
-@media (min-width: 600px) and (max-width: 800px) {
-  .width-image {
-    height: 59px;
-    min-width: 59px;
-    width: 59px;
+@media (min-width: 320px) and (max-width: 600px) {
+  .item-details-title-no-bold {
+    font-size: 16px;
   }
 }
-@media (min-width: 801px) and (max-width: 1264px) {
+@media (min-width: 320px) and (max-width: 1264px) {
   .width-image {
     height: 80px !important;
     min-width: 80px !important;
