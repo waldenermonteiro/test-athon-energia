@@ -5,6 +5,9 @@ export const SET_DATA = (state, payload) => {
 export const SET_CRIMINAL_IN_LIST = (state, payload) => {
   state.criminalsForm = [...state.criminalsForm, payload]
 }
+export const CLEAR_CRIMINAL_LIST = (state) => {
+  state.criminalsForm = []
+}
 export const UPDATE = (state, { form, index }) => {
   state.criminalsForm = state.criminalsForm.map((item, indexMap) => (indexMap === index ? {
     ...item,

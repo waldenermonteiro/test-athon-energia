@@ -25,9 +25,10 @@ export const listCountries = async ({ commit }, params) => {
     await error
   }
 }
-export const create = async ({ commit }, obj) => {
+export const create = async ({ commit, dispatch }, obj) => {
   try {
     await CrimeService.create(obj)
+    commit('Criminal/CLEAR_CRIMINAL_LIST', null, { root: true })
   } catch (error) {
     throw error
   }

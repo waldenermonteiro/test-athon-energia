@@ -6,7 +6,7 @@
           <v-toolbar-title><span class="font-24">New Crime</span></v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn icon dark @click="dialog = false">
+            <v-btn icon dark @click="closeModal()">
               <v-icon color="black">mdi-close</v-icon>
             </v-btn>
           </v-toolbar-items>
@@ -69,7 +69,7 @@
                 </v-col>
                 <v-col cols="12" sm="6" md="6">
                   <v-select
-                    v-model="form.weapon"
+                    v-model="form.weaponsList"
                     outlined
                     dense
                     label="Weapon (optional)"
@@ -82,7 +82,7 @@
                 </v-col>
                 <v-col md="6">
                   <v-select
-                    v-model="form.victim"
+                    v-model="form.victimsList"
                     outlined
                     dense
                     label="Victim (optional)"
@@ -110,7 +110,7 @@
           </v-container>
         </v-card-text>
         <v-card-actions class="d-flex justify-end">
-          <v-btn :disabled="!valid" @click="save()" class="default-color">
+          <v-btn :disabled="!valid" @click="save(form, criminalsForm)" class="default-color">
             <v-icon left dark>
               mdi-plus
             </v-icon>
@@ -130,7 +130,7 @@ export default {
   components: {
     ListCriminals
   },
-  data: vm => ({
+  data: () => ({
     dialog: false,
     valid: true,
     menu: false,
@@ -141,7 +141,8 @@ export default {
       typeOfCrime: '',
       date: '',
       criminal: '',
-      weapon: []
+      weaponsList: [],
+      victimsList: []
     },
     dateFormatted: ''
   }),
@@ -170,16 +171,53 @@ export default {
     },
     closeModal () {
       this.dialog = false
+      this.$refs.form.reset()
     },
     openModalListCriminals () {
       this.$refs.modalListCriminals.openModal()
     },
     addCriminal (form) {
-      console.log(form)
       this.create({ ...form })
     },
-    save () {
-      this.$refs.form.validate()
+    prepareParams (form, criminalsForm) {
+      return {
+        country: form.country,
+        crime_date: form.date,
+        criminal_list: criminalsForm.length === 0 ? [] : criminalsForm.map((crime) => {
+          return { criminal_id: crime.criminal.id_criminal, id_crime_type: crime.typeOfCrime }
+        }),
+        weapon_list: form.weaponsList.length === 0 ? [] : form.weaponsList.map((weapon) => {
+          return { weapon_id: weapon }
+        }),
+        victim_list: form.victimsList.length === 0 ? [] : form.victimsList.map((victim) => {
+          return { victim_id: victim }
+        })
+      }
+    },
+    save (form, criminalsForm) {
+      if (this.$refs.form.validate()) {
+        const params = this.prepareParams(form, criminalsForm)
+        this.$createOrUpdate({
+          urlDispatch: 'Crime/create',
+          params,
+          messages: 'Crime successfully registered',
+          callback: () => {
+            this.$list({ urlDispatch: 'Crime/list' })
+            this.closeModal()
+            this.clearForm()
+          }
+        })
+      }
+    },
+    clearForm () {
+      this.form = {
+        country: '',
+        typeOfCrime: '',
+        date: '',
+        criminal: '',
+        weaponsList: [],
+        victimsList: []
+      }
     }
   }
 }
