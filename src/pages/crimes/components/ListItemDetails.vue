@@ -1,8 +1,8 @@
 <template>
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="700">
-      <v-card class="main-color ">
-        <v-toolbar dark class="default-color">
+      <v-card class="main--background ">
+        <v-toolbar dark class="default--background">
           <v-toolbar-title><span class="font-24">Crime</span></v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
@@ -39,7 +39,7 @@
             </v-col>
           </v-row>
           <template slot="delete">
-            <v-icon class="btn-delete float-right" color="#2699fb" @click="deleteCrime()">
+            <v-icon class="btn__delete float-right" color="#2699fb" @click="deleteCrime()">
               mdi-delete
             </v-icon>
           </template>
@@ -77,10 +77,6 @@ export default {
   }
 }
 </script>
-<style scoped>
-@media (min-width: 320px) and (max-width: 600px) {
-  .only-desktop {
-    display: none;
-  }
-}
+<style lang="scss" scoped>
+@import "./style.scss";
 </style>

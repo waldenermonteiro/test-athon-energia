@@ -1,0 +1,56 @@
+@import "../../../assets/fonts.scss";
+$card--color: #3c5c77;
+.card--options {
+   color: $card--color !important;
+   letter-spacing: 0px !important;
+   opacity: 1 !important;
+}
+.card__title > div {
+   @extend .card--options;
+   font: normal normal bold 18px/22px $default__font;
+}
+.card__title--nobold {
+   @extend .card--options;
+   font: normal normal medium 18px/22px $default__font;
+}
+.card__subtitle {
+   @extend .card--options;
+   font: normal normal medium 14px/18px $default__font;
+}
+.card__text {
+   font: normal normal 18px/22px $default__font;
+}
+@media (min-width: 320px) and (max-width: 600px) {
+   .card__title--nobold {
+      font-size: 16px;
+   }
+}
+@media (min-width: 320px) and (max-width: 1264px) {
+   .card__avatar {
+      height: 80px !important;
+      min-width: 80px !important;
+      width: 80px !important;
+   }
+}
+@media (min-width: 1264px) {
+   .card__avatar {
+      height: 100px !important;
+      min-width: 100px !important;
+      width: 100px !important;
+   }
+}
+@media (min-width: 320px) and (max-width: 600px) {
+   .only-desktop {
+     display: none;
+   }
+ }
+.col--height {
+   height: 115.2px !important;
+ }
+//Customs
+.v-card {
+   p.mb-0,
+   p.mb-1 {
+      color: $card--color !important;
+   }
+}

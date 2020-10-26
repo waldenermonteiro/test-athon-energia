@@ -1,8 +1,8 @@
 <template>
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600px">
-      <v-card class="main-color">
-        <v-toolbar dark class="default-color">
+      <v-card class="main--background">
+        <v-toolbar dark class="default--background">
           <v-toolbar-title><span class="font-24">New Crime</span></v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
@@ -94,7 +94,7 @@
                   ></v-select>
                 </v-col>
                 <v-col cols="12">
-                  <v-btn :disabled="!form.criminal" @click="addCriminal(form)" class="v-picker--full-width btn-default-custom">
+                  <v-btn :disabled="!form.criminal" @click="addCriminal(form)" class="v-picker--full-width btn-default">
                     <v-icon left dark>
                       mdi-plus
                     </v-icon>
@@ -110,7 +110,7 @@
           </v-container>
         </v-card-text>
         <v-card-actions class="d-flex justify-end">
-          <v-btn :disabled="!valid" @click="save(form, criminalsForm)" class="default-color">
+          <v-btn :disabled="!valid" @click="save(form, criminalsForm)" class="default--background">
             <v-icon left dark>
               mdi-plus
             </v-icon>

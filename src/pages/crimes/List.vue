@@ -5,7 +5,7 @@
         <div class="font-30">Crime List</div>
       </v-col>
       <v-col class="d-flex justify-end">
-        <v-btn @click="openModalCreate()" class="default-color">
+        <v-btn @click="openModalCreate()" class="default--background">
           <v-icon left dark>
             mdi-plus
           </v-icon>
@@ -21,7 +21,7 @@
             <v-icon class="float-right" color="#2699fb" @click="openModalListItemDetails(crime.id_crime)">
               mdi-magnify-plus-outline
             </v-icon>
-            <v-icon class="btn-delete float-right" color="#2699fb" @click="deleteCrime(crime.id_crime)">
+            <v-icon class="btn__delete float-right" color="#2699fb" @click="deleteCrime(crime.id_crime)">
               mdi-delete
             </v-icon>
           </div>

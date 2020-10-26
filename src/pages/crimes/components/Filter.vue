@@ -75,7 +75,7 @@
             </v-icon>
             Clear
           </v-btn>
-          <v-btn @click="filter(form)" class="btn-search-color col-3 ma-2">
+          <v-btn @click="filter(form)" class="btn__search col-3 ma-2">
             <v-icon left dark>
               mdi-magnify
             </v-icon>
