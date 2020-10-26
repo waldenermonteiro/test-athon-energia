@@ -1,5 +1,5 @@
 <template>
-  <div class="test-scroll">
+  <div class="list--scroll">
     <v-row class="mt-1" no-gutters v-for="(item, index) in criminalsForm" :key="index">
       <v-col class="d-flex justify-start">
         <span class="mr-1">{{ index + 1 }} -</span>
@@ -50,9 +50,6 @@ export default {
   }
 }
 </script>
-<style>
-.test-scroll {
-  max-height: 80px !important;
-  overflow:auto
-}
+<style lang="scss" scoped>
+@import "./style.scss";
 </style>

@@ -1,8 +1,8 @@
 <template>
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600px">
-      <v-card class="main-color">
-        <v-toolbar dark class="default-color">
+      <v-card class="main--background">
+        <v-toolbar dark class="default--background">
           <v-toolbar-title><span class="font-24">Update Crime</span></v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
@@ -48,7 +48,7 @@
           </v-container>
         </v-card-text>
         <v-card-actions class="d-flex justify-end">
-          <v-btn @click="save({ form, index })" class="default-color">
+          <v-btn @click="save({ form, index })" class="default--background">
             <v-icon left dark>
               mdi-plus
             </v-icon>
