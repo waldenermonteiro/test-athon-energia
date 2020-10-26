@@ -7,18 +7,18 @@ $card--color: #3c5c77;
 }
 .card__title > div {
    @extend .card--options;
-   font: normal normal bold 18px/22px $default__font;
+   font: normal normal bold 18px/22px $default--font;
 }
 .card__title--nobold {
    @extend .card--options;
-   font: normal normal medium 18px/22px $default__font;
+   font: normal normal medium 18px/22px $default--font;
 }
 .card__subtitle {
    @extend .card--options;
-   font: normal normal medium 14px/18px $default__font;
+   font: normal normal medium 14px/18px $default--font;
 }
 .card__text {
-   font: normal normal 18px/22px $default__font;
+   font: normal normal 18px/22px $default--font;
 }
 @media (min-width: 320px) and (max-width: 600px) {
    .card__title--nobold {

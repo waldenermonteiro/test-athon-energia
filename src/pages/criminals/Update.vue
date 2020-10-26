@@ -3,7 +3,7 @@
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card class="main--background">
         <v-toolbar dark class="default--background">
-          <v-toolbar-title><span class="font-24">Update Crime</span></v-toolbar-title>
+          <v-toolbar-title><span class="font--24">Update Crime</span></v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
             <v-btn icon dark @click="dialog = false">

@@ -3,7 +3,7 @@
     <v-dialog v-model="dialog" persistent max-width="700">
       <v-card class="main--background ">
         <v-toolbar dark class="default--background">
-          <v-toolbar-title><span class="font-24">Crime</span></v-toolbar-title>
+          <v-toolbar-title><span class="font--24">Crime</span></v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
             <v-btn icon dark @click="dialog = false">
@@ -12,7 +12,7 @@
           </v-toolbar-items>
         </v-toolbar>
         <ListItem class="elevation-0" :typeOfCrime="crime.criminal_crime_types" :dateOfTheCrime="crime.crime_date" :country="crime.country">
-          <h2 class="only-desktop font-24 mt-5">Criminal</h2>
+          <h2 class="only-desktop font--24 mt-5">Criminal</h2>
           <v-row v-if="crime.criminal_crime_types.length === 0">
             <v-col cols="12" sm="6" md="6">
               <ListItemWithImage :onlyOne="true" secondTitle="No criminal" subtitle="Weapon" :emptyItems="`NO <br />CRIMINAL`" />
@@ -27,7 +27,7 @@
               />
             </v-col>
           </v-row>
-          <h2 class="only-desktop font-24">Victim</h2>
+          <h2 class="only-desktop font--24">Victim</h2>
           <v-row v-if="crime.victims_crime.length === 0">
             <v-col cols="12" sm="6" md="6">
               <ListItemWithImage :onlyOne="true" secondTitle="No victim" subtitle="Victim" :emptyItems="`NO <br />VICTIM`" />

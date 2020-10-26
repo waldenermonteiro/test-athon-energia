@@ -3,7 +3,7 @@ $default--background: #fcfc99;
 $main--background: #f1f9ff;
 
 * {
-   font-family: var(--unnamed-font-style-normal) normal medium 14px/18px $default__font !important;
+   font-family: var(--unnamed-font-style-normal) normal medium 14px/18px $default--font !important;
 } 
 .main--background {
    background-color: $main--background !important;
