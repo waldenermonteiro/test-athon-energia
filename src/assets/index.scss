@@ -1,66 +1,19 @@
-$default-color: #fcfc99;
-$main-color: #f1f9ff;
-$card-color: #3c5c77;
-$default-font: Montserrat;
-$cinzel-font: Cinzel Decorative;
+@import "./fonts.scss";
+$default--background: #fcfc99;
+$main--background: #f1f9ff;
+
 * {
-   font-family: var(--unnamed-font-style-normal) normal medium 14px/18px $default-font !important;
+   font-family: var(--unnamed-font-style-normal) normal medium 14px/18px $default__font !important;
+} 
+.main--background {
+   background-color: $main--background !important;
 }
-button {
-   span {
-      @extend .cinzel-font;
-   }
+.default--background {
+   background-color: $default--background !important ;
 }
-
-.main-color {
-   background-color: $main-color !important;
-}
-.card-color {
-   color: $card-color !important;
-}
-.cinzel-font {
-   font-weight: 700;
-   letter-spacing: 0px;
-   color: #313131 !important;
-}
-.font-30 {
-   @extend .cinzel-font;
-   font: normal normal bold 38px/33px $cinzel-font;
-   text-transform: uppercase;
-}
-@media (min-width: 320px) and (max-width: 600px) {
-   .font-30 {
-      font: normal normal bold 18px $cinzel-font !important;
-   }
- }
-.font-24 {
-   @extend .cinzel-font;
-   text-transform: uppercase;
-   font: normal normal bold 24px/17px $cinzel-font;
-}
-.default-color {
-   background-color: $default-color !important ;
-}
-.btn-search-color {
-   background-color: $main-color !important;
-}
-.btn-default-custom {
-   background-color: #fafafa !important;
-   span {
-      color: #2699fb !important;
-   }
-}
-.btn-error-color{
-   span {
-      color:#FFFFFF !important;
-   }
-
-}
-.btn-delete:hover {
-   color: red !important;
-}
+// Customs
 .v-main__wrap {
-   @extend .main-color;
+   @extend .main--background;
 }
 .v-input__icon > button {
    background-color: white !important;
@@ -71,31 +24,4 @@ button {
 .v-text-field.v-text-field--enclosed .v-text-field__details {
    margin-bottom: 0px !important;
 }
-.v-card {
-   .v-card__title {
-      @extend .card-color;
-      letter-spacing: 0px !important;
-      opacity: 1 !important;
-   }
-   .v-card__subtitle {
-      @extend .card-color;
-      letter-spacing: 0px !important;
-      opacity: 1 !important;
-   }
-   p.mb-0,
-   p.mb-1 {
-      @extend .card-color;
-   }
-}
-.item-details-title > div {
-   font: normal normal bold 18px/22px $default-font; 
- }
- .item-details-title-no-bold {
-   font: normal normal medium 18px/22px $default-font;
- }
- .item-details-subtitle {
-   font: normal normal medium 14px/18px $default-font;
- }
- .item-details-text {
-   font: normal normal  18px/22px $default-font;
- }
+

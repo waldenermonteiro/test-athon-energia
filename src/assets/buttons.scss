@@ -1,0 +1,25 @@
+@import "./index.scss";
+
+.btn__search {
+   background-color: $main--background !important;
+}
+.btn__default{
+   background-color: #fafafa !important;
+   span {
+      color: #2699fb !important;
+   }
+}
+.btn__error{
+   span {
+      color: #ffffff !important;
+   }
+}
+.btn__delete:hover {
+   color: red !important;
+}
+// Customs
+button {
+   span {
+      @extend .cinzel__font;
+   }
+}

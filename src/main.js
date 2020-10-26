@@ -7,6 +7,8 @@ import BaseVuex from './plugins/baseVuex'
 import Vuelidate from 'vuelidate'
 import VueLoading from 'vuejs-loading-plugin'
 import './assets/index.scss'
+import './assets/buttons.scss'
+import './assets/fonts.scss'
 Vue.config.productionTip = false
 
 Vue.use(BaseVuex)
